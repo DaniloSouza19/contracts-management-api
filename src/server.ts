@@ -4,8 +4,12 @@ const app = express();
 
 const APP_PORT = 3335;
 
+app.use(express.json());
+
 app.get('/', (request, response) => {
-  return response.send('ok');
+  return response.json({ ok: true });
 });
 
-app.listen(APP_PORT, () => console.log(`Server started on port:${APP_PORT}🚀`));
+app.listen(APP_PORT, () =>
+  console.log(`Server started on port:${APP_PORT} 🚀`)
+);
