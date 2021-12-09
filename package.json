@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev:server": "ts-node-dev --ignore-watch node_modules --respawn --transpile-only src/server.ts",
+    "dev:server": "ts-node-dev --ignore-watch node_modules --respawn --transpile-only src/shared/infra/http/server.ts",
     "build": "tsc"
   },
   "devDependencies": {
