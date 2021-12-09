@@ -49,6 +49,7 @@
 **RN**
 - [] Para registrar um pagamento, o usuário deve ser um administrador.
 - [] Não deve ser possível registrar um pagamento com um contrato inexistente.
+- [] Não deve ser possível registrar um pagamento com um contrato vencido.
 
 ## Renovação de contratos
 
@@ -57,5 +58,5 @@
 
 **RN**
 - [] Não deve ser possível renovar um contrato inexistente.
-- [] Ao renovar um contrato a data inicio deverá ser a data de renovação (data atual)
-- [] Deve registrar um historico de renovação de contratos, contendo o valor anterior
+- [] Ao renovar um contrato a data inicio deverá ser informada não prendendo a data de renovação (data atual)
+- [] Deve registrar um historico de renovação de contratos, contendo o valor anterior, data de contrato anterior (incio e fim) e data da renovação. (Renovations_contracts)
