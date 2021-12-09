@@ -10,6 +10,7 @@ app.get('/', (request, response) => {
   return response.json({ ok: true });
 });
 
-app.listen(APP_PORT, () =>
-  console.log(`Server started on port:${APP_PORT} 🚀`)
+app.listen(
+  APP_PORT,
+  () => -console.log(`Server started on port:${APP_PORT} 🚀`)
 );
