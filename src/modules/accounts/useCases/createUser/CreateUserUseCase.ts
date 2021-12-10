@@ -1,8 +1,8 @@
+import { User } from '@modules/accounts/infra/entities/User';
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { hash } from 'bcrypt';
 
-import { AppError } from '../../../../shared/errors/AppError';
-import { User } from '../../infra/entities/User';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
