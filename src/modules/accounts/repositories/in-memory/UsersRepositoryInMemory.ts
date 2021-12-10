@@ -16,8 +16,6 @@ class UsersRepositoryInMemory implements IUsersRepository {
 
     this.users.push(user);
 
-    console.log(user);
-
     return user;
   }
 }
