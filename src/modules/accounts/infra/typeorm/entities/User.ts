@@ -7,6 +7,8 @@ class User {
 
   email: string;
 
+  is_admin: boolean;
+
   password: string;
 
   created_at: Date;
@@ -16,6 +18,7 @@ class User {
   constructor() {
     if (!this.id) {
       this.id = uuidV4();
+      this.is_admin = false;
     }
   }
 }
