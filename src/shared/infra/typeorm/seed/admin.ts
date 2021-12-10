@@ -9,12 +9,20 @@ async function create(): Promise<void> {
   const id = uuidV4();
   const password = await hash('admin', 8);
 
-  await connection.query(
-    `INSERT INTO users(id, name, email, password, created_at, updated_at, is_admin)
-      VALUES ('${id}','admin', 'admin@dgs.com.br','${password}', now(), now(), true)`
-  );
-
-  await connection.close();
+  try {
+    await connection.query(
+      `INSERT INTO users(id, name, email, password, created_at, updated_at, is_admin)
+        VALUES ('${id}','admin', 'admin@dgs.com.br','${password}', now(), now(), true)`
+    );
+  } catch (error) {
+    console.log(error);
+  } finally {
+    try {
+      await connection.close();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
-create().then(() => console.log('Admin User was created!'));
+create().then(() => console.log('The Script was finished'));
