@@ -3,5 +3,11 @@
   "host": "localhost",
   "port": "",
   "username": "",
-  "password": ""
+  "password": "",
+  "database": "contracts",
+  "entities": ["./src/modules/**/entities/*.ts"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*"],
+  "cli": {
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
+  }
 }
