@@ -6,7 +6,7 @@
 - [x] Deve ser possível cadastrar uma usuário.
 
 **RNF**
-- [x] Deve utilizar o bcript para criptografar a senha.
+- [x] Deve utilizar o bcrypt para criptografar a senha.
 
 **RN**
 - [x] Não deve ser possível cadastrar um usuário com um e-mail já existente.
