@@ -1,14 +1,10 @@
 import { hash } from 'bcrypt';
-import { getConnectionOptions } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
 import createConnection from '../index';
 
 async function create(): Promise<void> {
-  const options = await getConnectionOptions();
   const connection = await createConnection('localhost', 5433);
-
-  console.log(options);
 
   const id = uuidV4();
   const password = await hash('admin', 8);
