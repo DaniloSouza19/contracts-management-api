@@ -1,6 +1,11 @@
 # Requisitos da aplicação
 
-## Cadastro de usuários/pessoas (Users)
+## Cadastro de usuários (Users)
+
+**RF**
+- [] Deve ser possível cadastrar uma usuário.
+
+## Cadastro de pessoas (People)
 
 **RF**
 - [] Deve ser possível cadastrar uma pessoa.
@@ -9,7 +14,7 @@
 - [] Para cadastrar uma pessoa, o usuário que irá cadastra-lo deve ser um administrador.
 - [] Não deve poder cadastrar um usuário com um CPF/CNPJ já existente (document_id)
 
-## Cadastro de endereço de pessoas/usuários (User_address)
+## Cadastro de endereço de pessoas/usuários (People_address)
 
 **RF**
 - [] Deve ser possível cadastrar um endereço para uma pessoa.
@@ -51,7 +56,7 @@
 - [] Não deve ser possível registrar um pagamento com um contrato inexistente.
 - [] Não deve ser possível registrar um pagamento com um contrato vencido.
 
-## Renovação de contratos
+## Renovação de contratos (Contracts_renewal_history)
 
 **RF**
 - [] Deve ser possível renovar um contrato.
