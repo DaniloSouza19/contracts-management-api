@@ -9,8 +9,8 @@
 - [] Deve utilizar o bcript para criptografar a senha.
 
 **RN**
-- [] Não deve ser possível cadastrar um usuário com um e-mail já existente.
-- [] Não deve gravar a senha diretamente no banco, a mesma deve ser criptografada.
+- [x] Não deve ser possível cadastrar um usuário com um e-mail já existente.
+- [] A senha deve ser criptografada antes de ser armazenada no banco de dados.
 
 ## Cadastro de pessoas (People)
 
