@@ -5,6 +5,13 @@
 **RF**
 - [] Deve ser possível cadastrar uma usuário.
 
+**RNF**
+- [] Deve utilizar o bcript para criptografar a senha.
+
+**RN**
+- [] Não deve ser possível cadastrar um usuário com um e-mail já existente.
+- [] Não deve gravar a senha diretamente no banco, a mesma deve ser criptografada.
+
 ## Cadastro de pessoas (People)
 
 **RF**
