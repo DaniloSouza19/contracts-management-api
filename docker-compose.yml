@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: contracts_management
+    container_name: contracts-management
     ports:
       - 3335:3333
     volumes:
