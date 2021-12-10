@@ -3,14 +3,14 @@
 ## Cadastro de usuários (Users)
 
 **RF**
-- [] Deve ser possível cadastrar uma usuário.
+- [x] Deve ser possível cadastrar uma usuário.
 
 **RNF**
-- [] Deve utilizar o bcript para criptografar a senha.
+- [x] Deve utilizar o bcript para criptografar a senha.
 
 **RN**
 - [x] Não deve ser possível cadastrar um usuário com um e-mail já existente.
-- [] A senha deve ser criptografada antes de ser armazenada no banco de dados.
+- [x] A senha deve ser criptografada antes de ser armazenada no banco de dados.
 
 ## Cadastro de pessoas (People)
 
