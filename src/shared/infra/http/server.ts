@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { errors } from 'celebrate';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 
@@ -17,6 +18,11 @@ const APP_PORT = 3333;
 app.use(express.json());
 
 app.use(routes);
+
+/**
+ * Celebrate middleware
+ */
+app.use(errors());
 
 /**
  * Async Errors handler
