@@ -22,6 +22,9 @@ app.use(express.json());
 
 app.use(routes);
 
+/**
+ * Swagger-Ui middleware documentation route
+ */
 app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /**
