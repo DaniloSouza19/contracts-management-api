@@ -24,10 +24,10 @@
 ## Cadastro de endereço de pessoas (People_address)
 
 **RF**
-- [] Deve ser possível cadastrar um endereço para uma pessoa.
+- [x] Deve ser possível cadastrar um endereço para uma pessoa.
 
 **RN**
-- [] Para cadastrar um endereço o usuário deve ser um administrador
+- [x] Para cadastrar um endereço o usuário deve ser um administrador
 - [] Será possível somente um endereço para cada pessoa.
 
 ## Cadastro de imovel (Property)
