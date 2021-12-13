@@ -2,10 +2,13 @@ import 'reflect-metadata';
 import { errors } from 'celebrate';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
+import swaggerUi from 'swagger-ui-express';
 
 import '@shared/container';
+
 import { AppError } from '@shared/errors/AppError';
 
+import swaggerDocument from '../../../../docs/swagger.json';
 import createConnection from '../typeorm';
 import { routes } from './routes';
 
@@ -18,6 +21,8 @@ const APP_PORT = 3333;
 app.use(express.json());
 
 app.use(routes);
+
+app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /**
  * Celebrate middleware
