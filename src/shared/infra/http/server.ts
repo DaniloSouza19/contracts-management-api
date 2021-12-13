@@ -25,7 +25,7 @@ app.use(routes);
 app.use(errors());
 
 /**
- * Async Errors handler
+ * Async Errors handler middleware
  */
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
