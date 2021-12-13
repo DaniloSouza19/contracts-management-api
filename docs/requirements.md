@@ -21,7 +21,7 @@
 - [] Para cadastrar uma pessoa, o usuário que irá cadastra-lo deve ser um administrador.
 - [] Não deve poder cadastrar um usuário com um CPF/CNPJ já existente (document_id)
 
-## Cadastro de endereço de pessoas/usuários (People_address)
+## Cadastro de endereço de pessoas (People_address)
 
 **RF**
 - [] Deve ser possível cadastrar um endereço para uma pessoa.
@@ -39,6 +39,15 @@
 - [] Para cadastrar um imóvel, o usuário deve ser um administrador.
 - [] Ao cadastrar um imóvel deve ser associa-lo a um proprietário. (user_id)
 - [] Não deve ser possível cadastrar um imóvel associando um proprietário não existente
+
+## Cadastro de endereço de imovel (Property_address)
+
+**RF**
+- [] Deve ser possível cadastrar um endereço para uma imovel.
+
+**RN**
+- [] Para cadastrar um endereço o usuário deve ser um administrador
+- [] Será possível somente um endereço para cada imovel.
 
 ## Cadastro de contratos (Contracts)
 
