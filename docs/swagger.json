@@ -238,7 +238,7 @@
     },
     "responses": {
       "UnauthorizedError": {
-        "description": "Token is missing or invalid"
+        "description": "Token is missing or invalid | user is not admin"
       }
     },
     "securitySchemes": {
