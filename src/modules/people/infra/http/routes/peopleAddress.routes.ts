@@ -2,6 +2,7 @@ import { CreatePersonAddressController } from '@modules/people/useCases/createPe
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 
+import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
 const peopleAddressRouter = Router();
@@ -25,6 +26,7 @@ peopleAddressRouter.post(
     }),
   }),
   ensureAuthenticated,
+  ensureAdmin,
   createPersonAddressController.handle
 );
 
