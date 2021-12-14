@@ -9,6 +9,7 @@ export class CreateAddressPeople1639415388724 implements MigrationInterface {
           {
             name: 'id',
             type: 'uuid',
+            isPrimary: true,
           },
           {
             name: 'cep',
