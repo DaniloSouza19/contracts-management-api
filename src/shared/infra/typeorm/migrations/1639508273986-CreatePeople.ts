@@ -36,7 +36,6 @@ export class CreatePeople1639508273986 implements MigrationInterface {
           {
             name: 'address_id',
             type: 'uuid',
-            isNullable: true,
           },
           {
             name: 'created_at',
