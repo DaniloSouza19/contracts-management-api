@@ -1,8 +1,8 @@
-import { ICreatePersonAddress } from '../dtos/ICreatePersonAddress';
+import { ICreatePersonAddressDTO } from '../dtos/ICreatePersonAddressDTO';
 import { PersonAddress } from '../infra/typeorm/entities/PersonAddress';
 
 interface IPeopleAddressRepository {
-  create(data: ICreatePersonAddress): Promise<PersonAddress>;
+  create(data: ICreatePersonAddressDTO): Promise<PersonAddress>;
 }
 
 export { IPeopleAddressRepository };

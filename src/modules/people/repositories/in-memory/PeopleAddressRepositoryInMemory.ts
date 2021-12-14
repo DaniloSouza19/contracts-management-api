@@ -1,4 +1,4 @@
-import { ICreatePersonAddress } from '@modules/people/dtos/ICreatePersonAddress';
+import { ICreatePersonAddressDTO } from '@modules/people/dtos/ICreatePersonAddressDTO';
 import { PersonAddress } from '@modules/people/infra/typeorm/entities/PersonAddress';
 
 import { IPeopleAddressRepository } from '../IPeopleAddressRepository';
@@ -12,7 +12,7 @@ class PeopleAddressRepositoryInMemory implements IPeopleAddressRepository {
     neighborhood,
     state,
     street,
-  }: ICreatePersonAddress): Promise<PersonAddress> {
+  }: ICreatePersonAddressDTO): Promise<PersonAddress> {
     const personAddress = new PersonAddress();
 
     Object.assign(personAddress, {

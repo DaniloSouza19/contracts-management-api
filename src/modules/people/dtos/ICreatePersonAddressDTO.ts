@@ -1,4 +1,4 @@
-interface ICreatePersonAddress {
+interface ICreatePersonAddressDTO {
   cep: string;
   street: string;
   state: string;
@@ -6,4 +6,4 @@ interface ICreatePersonAddress {
   neighborhood: string;
 }
 
-export { ICreatePersonAddress };
+export { ICreatePersonAddressDTO };

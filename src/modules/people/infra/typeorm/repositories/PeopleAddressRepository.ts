@@ -1,4 +1,4 @@
-import { ICreatePersonAddress } from '@modules/people/dtos/ICreatePersonAddress';
+import { ICreatePersonAddressDTO } from '@modules/people/dtos/ICreatePersonAddressDTO';
 import { IPeopleAddressRepository } from '@modules/people/repositories/IPeopleAddressRepository';
 import { getRepository, Repository } from 'typeorm';
 
@@ -17,7 +17,7 @@ class PeopleAddressRepository implements IPeopleAddressRepository {
     neighborhood,
     state,
     street,
-  }: ICreatePersonAddress): Promise<PersonAddress> {
+  }: ICreatePersonAddressDTO): Promise<PersonAddress> {
     const personAddress = this.repository.create({
       cep,
       city,
