@@ -11,6 +11,8 @@ const createPersonAddressController = new CreatePersonAddressController();
 
 peopleAddressRouter.post(
   '/',
+  ensureAuthenticated,
+  ensureAdmin,
   celebrate({
     [Segments.BODY]: Joi.object({
       cep: Joi.string()
@@ -25,8 +27,6 @@ peopleAddressRouter.post(
       neighborhood: Joi.string().required(),
     }),
   }),
-  ensureAuthenticated,
-  ensureAdmin,
   createPersonAddressController.handle
 );
 
