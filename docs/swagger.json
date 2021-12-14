@@ -113,6 +113,48 @@
           }
         }
       }
+    },
+    "/people-address": {
+      "post": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Create a person address",
+        "description": "Create a person address",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonAddress"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonAddress"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {
+            "description": "Validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -151,6 +193,59 @@
           "email": "johndoe@example.com",
           "password": "1234"
         }
+      },
+      "PersonAddress": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "cep": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "neighborhood": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "Date"
+          },
+          "updated_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "cep",
+          "street",
+          "city",
+          "neighborhood"
+        ],
+        "example": {
+          "cep": "75100000",
+          "street": "Some Street",
+          "state": "GO",
+          "city": "Some City",
+          "neighborhood": "Some neighborhood"
+        }
+      }
+    },
+    "responses": {
+      "UnauthorizedError": {
+        "description": "Token is missing or invalid"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
