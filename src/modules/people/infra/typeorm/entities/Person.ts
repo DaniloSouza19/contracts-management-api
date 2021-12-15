@@ -2,10 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
+
+import { PersonAddress } from './PersonAddress';
 
 @Entity('people')
 class Person {
@@ -29,6 +33,12 @@ class Person {
 
   @Column()
   address_id: string;
+
+  @OneToOne(() => PersonAddress)
+  @JoinColumn({
+    name: 'address_id',
+  })
+  address: PersonAddress;
 
   @CreateDateColumn()
   created_at: Date;
