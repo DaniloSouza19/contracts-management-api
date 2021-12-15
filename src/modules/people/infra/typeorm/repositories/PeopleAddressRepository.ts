@@ -30,6 +30,10 @@ class PeopleAddressRepository implements IPeopleAddressRepository {
 
     return personAddress;
   }
+
+  async findById(id: string): Promise<PersonAddress | undefined> {
+    return this.repository.findOne(id);
+  }
 }
 
 export { PeopleAddressRepository };
