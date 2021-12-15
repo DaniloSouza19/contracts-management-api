@@ -145,9 +145,47 @@
           "401": {
             "$ref": "#/components/responses/UnauthorizedError"
           },
-          "400": {
-            "description": "Validation failed"
+          "400": {}
+        },
+        "security": [
+          {
+            "bearerAuth": []
           }
+        ]
+      }
+    },
+    "/people": {
+      "post": {
+        "tags": [
+          "People"
+        ],
+        "summary": "Create a person",
+        "description": "Create a person",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Person"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Person"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {}
         },
         "security": [
           {
@@ -233,6 +271,50 @@
           "state": "GO",
           "city": "Some City",
           "neighborhood": "Some neighborhood"
+        }
+      },
+      "Person": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "document_id": {
+            "type": "string"
+          },
+          "is_legal_person": {
+            "type": "boolean"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "address_id": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "Date"
+          },
+          "updated_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "name",
+          "document_id",
+          "telephone",
+          "address_id"
+        ],
+        "example": {
+          "name": "John Doe",
+          "document_id": "000.000.000-00",
+          "telephone": "62 9 9999-9999",
+          "email": "johndoe@example.com",
+          "address_id": "e0bc11f8-f163-4271-a95a-96de27699478"
         }
       }
     },
