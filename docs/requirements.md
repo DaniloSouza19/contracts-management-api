@@ -15,11 +15,12 @@
 ## Cadastro de pessoas (People)
 
 **RF**
-- [] Deve ser possível cadastrar uma pessoa.
+- [x] Deve ser possível cadastrar uma pessoa.
 
 **RN**
-- [] Para cadastrar uma pessoa, o usuário que irá cadastra-lo deve ser um administrador.
-- [] Não deve poder cadastrar um usuário com um CPF/CNPJ já existente (document_id)
+- [x] Para cadastrar uma pessoa, o usuário que irá cadastra-lo deve ser um administrador.
+- [x] Não deve ser possível cadastrar uma pessoa com um endereço inexistente.
+- [x] Não deve poder cadastrar um usuário com um CPF/CNPJ já existente (document_id)
 
 ## Cadastro de endereço de pessoas (People_address)
 
@@ -28,7 +29,7 @@
 
 **RN**
 - [x] Para cadastrar um endereço o usuário deve ser um administrador
-- [] Será possível somente um endereço para cada pessoa.
+- [x] Será possível somente um endereço para cada pessoa.
 
 ## Cadastro de imovel (Property)
 
