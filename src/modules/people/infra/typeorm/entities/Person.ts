@@ -15,7 +15,7 @@ class Person {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: 'boolean' })
   is_legal_person = false;
 
   @Column()
