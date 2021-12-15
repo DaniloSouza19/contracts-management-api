@@ -27,6 +27,10 @@ class PeopleAddressRepositoryInMemory implements IPeopleAddressRepository {
 
     return personAddress;
   }
+
+  async findById(id: string): Promise<PersonAddress | undefined> {
+    return this.peopleAddress.find((address) => address.id === id);
+  }
 }
 
 export { PeopleAddressRepositoryInMemory };
