@@ -237,7 +237,7 @@
           "id": {
             "type": "string"
           },
-          "cep": {
+          "postal_code": {
             "type": "string"
           },
           "street": {
@@ -260,13 +260,13 @@
           }
         },
         "required": [
-          "cep",
+          "postal_code",
           "street",
           "city",
           "neighborhood"
         ],
         "example": {
-          "cep": "75100000",
+          "postal_code": "75100000",
           "street": "Some Street",
           "state": "GO",
           "city": "Some City",

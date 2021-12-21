@@ -7,7 +7,7 @@ class PeopleAddressRepositoryInMemory implements IPeopleAddressRepository {
   private peopleAddress: PersonAddress[] = [];
 
   async create({
-    cep,
+    postal_code,
     city,
     neighborhood,
     state,
@@ -16,7 +16,7 @@ class PeopleAddressRepositoryInMemory implements IPeopleAddressRepository {
     const personAddress = new PersonAddress();
 
     Object.assign(personAddress, {
-      cep,
+      postal_code,
       city,
       neighborhood,
       state,

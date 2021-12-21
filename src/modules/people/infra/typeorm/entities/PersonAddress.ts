@@ -13,7 +13,7 @@ class PersonAddress {
   id: string;
 
   @Column()
-  cep: string;
+  postal_code: string;
 
   @Column()
   street: string;

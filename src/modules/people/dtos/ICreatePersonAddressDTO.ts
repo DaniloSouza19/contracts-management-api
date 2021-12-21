@@ -1,5 +1,5 @@
 interface ICreatePersonAddressDTO {
-  cep: string;
+  postal_code: string;
   street: string;
   state: string;
   city: string;

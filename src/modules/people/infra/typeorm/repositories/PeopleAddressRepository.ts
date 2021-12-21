@@ -12,14 +12,14 @@ class PeopleAddressRepository implements IPeopleAddressRepository {
   }
 
   async create({
-    cep,
+    postal_code,
     city,
     neighborhood,
     state,
     street,
   }: ICreatePersonAddressDTO): Promise<PersonAddress> {
     const personAddress = this.repository.create({
-      cep,
+      postal_code,
       city,
       neighborhood,
       state,

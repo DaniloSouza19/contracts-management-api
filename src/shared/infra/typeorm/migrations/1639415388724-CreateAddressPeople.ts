@@ -12,7 +12,7 @@ export class CreateAddressPeople1639415388724 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'cep',
+            name: 'postal_code',
             type: 'varchar',
           },
           {

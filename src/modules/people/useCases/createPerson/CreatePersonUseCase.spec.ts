@@ -21,7 +21,7 @@ describe('Create a Person', () => {
 
   it('Should be able to create a Person', async () => {
     const address = await peopleAddressRepositoryInMemory.create({
-      cep: '75000000',
+      postal_code: '75000000',
       city: 'Some City',
       neighborhood: 'Some neighborhood',
       state: 'GO',
@@ -41,7 +41,7 @@ describe('Create a Person', () => {
 
   it('Should not be able to create a Person with already exists document_id', async () => {
     const address = await peopleAddressRepositoryInMemory.create({
-      cep: '75000000',
+      postal_code: '75000000',
       city: 'Some City',
       neighborhood: 'Some neighborhood',
       state: 'GO',

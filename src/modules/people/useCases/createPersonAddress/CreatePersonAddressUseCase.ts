@@ -3,7 +3,7 @@ import { IPeopleAddressRepository } from '@modules/people/repositories/IPeopleAd
 import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
-  cep: string;
+  postal_code: string;
   street: string;
   state: string;
   city: string;
@@ -18,14 +18,14 @@ class CreatePersonAddressUseCase {
   ) {}
 
   async execute({
-    cep,
+    postal_code,
     city,
     neighborhood,
     state,
     street,
   }: IRequest): Promise<PersonAddress> {
     const address = await this.personAddress.create({
-      cep,
+      postal_code,
       city,
       neighborhood,
       state,

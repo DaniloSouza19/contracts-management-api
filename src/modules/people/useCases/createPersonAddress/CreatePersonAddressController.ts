@@ -5,14 +5,14 @@ import { CreatePersonAddressUseCase } from './CreatePersonAddressUseCase';
 
 class CreatePersonAddressController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { cep, city, neighborhood, state, street } = request.body;
+    const { postal_code, city, neighborhood, state, street } = request.body;
 
     const createPersonAddressUseCase = container.resolve(
       CreatePersonAddressUseCase
     );
 
     const personAddress = await createPersonAddressUseCase.execute({
-      cep,
+      postal_code,
       city,
       neighborhood,
       state,

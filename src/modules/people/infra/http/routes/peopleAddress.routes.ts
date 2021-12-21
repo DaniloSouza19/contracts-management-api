@@ -15,7 +15,7 @@ peopleAddressRouter.post(
   ensureAdmin,
   celebrate({
     [Segments.BODY]: Joi.object({
-      cep: Joi.string()
+      postal_code: Joi.string()
         .length(8)
         .pattern(/^\d+$/, {
           name: 'Only just numbers',

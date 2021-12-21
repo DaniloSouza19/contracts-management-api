@@ -15,7 +15,7 @@ describe('Create a Person address', () => {
 
   it('Should be able to create a Person address', async () => {
     const personAddress = await createPersonAddressUseCase.execute({
-      cep: '75000000',
+      postal_code: '75000000',
       city: 'Some City',
       neighborhood: 'Some neighborhood',
       state: 'GO',
