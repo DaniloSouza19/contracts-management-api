@@ -1,57 +1,6 @@
-import 'reflect-metadata';
-import { errors } from 'celebrate';
-import express, { NextFunction, Request, Response } from 'express';
-import 'express-async-errors';
-import swaggerUi from 'swagger-ui-express';
-
-import '@shared/container';
-
-import { AppError } from '@shared/errors/AppError';
-
-import swaggerDocument from '../../../../docs/swagger.json';
-import createConnection from '../typeorm';
-import { routes } from './routes';
-
-const app = express();
-
-createConnection();
+import { app } from './app';
 
 const APP_PORT = 3333;
-
-app.use(express.json());
-
-app.use(routes);
-
-/**
- * Swagger-Ui middleware documentation route
- */
-app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-/**
- * Celebrate middleware
- */
-app.use(errors());
-
-/**
- * Async Errors handler middleware
- */
-app.use(
-  (err: Error, request: Request, response: Response, next: NextFunction) => {
-    if (err instanceof AppError) {
-      return response.status(err.statusCode).json({
-        status: 'error',
-        message: err.message,
-      });
-    }
-
-    console.log(err);
-
-    return response.status(500).json({
-      status: 'error',
-      message: 'Internal Server Error',
-    });
-  }
-);
 
 app.listen(
   APP_PORT,
