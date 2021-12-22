@@ -16,8 +16,6 @@ const app = express();
 
 createConnection();
 
-const APP_PORT = 3333;
-
 app.use(express.json());
 
 app.use(routes);
