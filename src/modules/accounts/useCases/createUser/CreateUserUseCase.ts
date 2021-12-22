@@ -3,7 +3,7 @@ import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepositor
 import { hash } from 'bcrypt';
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
+import { CreateUserError } from './errors/CreateUserError';
 
 interface IRequest {
   name: string;
@@ -22,7 +22,7 @@ class CreateUserUseCase {
     const emailExists = await this.usersRepository.findByEmail(email);
 
     if (emailExists) {
-      throw new AppError('E-mail already exists');
+      throw new CreateUserError();
     }
 
     const passwordHash = await hash(password, 8);
