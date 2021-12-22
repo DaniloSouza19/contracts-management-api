@@ -3,7 +3,7 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
+import { IncorrectEmailOrPasswordError } from './errors/IncorrectEmailOrPasswordError';
 
 interface IRequest {
   email: string;
@@ -29,16 +29,16 @@ class AuthenticateUserUseCase {
     const userExists = await this.usersRepository.findByEmail(email);
 
     if (!userExists) {
-      throw new AppError('E-mail or password does not match', 401);
+      throw new IncorrectEmailOrPasswordError();
     }
 
     const passwordMath = await compare(password, userExists.password);
 
     if (!passwordMath) {
-      throw new AppError('E-mail or password does not match', 401);
+      throw new IncorrectEmailOrPasswordError();
     }
 
-    const token = sign({}, '97b2410ef3e86fa5b4d86ce23e115c45', {
+    const token = sign({}, process.env.JWT_SECRET as string, {
       subject: userExists.id,
       expiresIn: '4h',
     });
