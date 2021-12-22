@@ -1,3 +1,4 @@
+import { UserMap } from '@modules/accounts/mappers/UserMap';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -15,9 +16,9 @@ class CreateUserController {
       password,
     });
 
-    delete user.password;
+    const userDTO = UserMap.toDTO(user);
 
-    return response.status(201).json(user);
+    return response.status(201).json(userDTO);
   }
 }
 
