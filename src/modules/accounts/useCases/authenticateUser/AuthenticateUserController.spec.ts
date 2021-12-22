@@ -6,6 +6,7 @@ import { v4 as uuidV4 } from 'uuid';
 import { app } from '@shared/infra/http/app';
 import createConnection from '@shared/infra/typeorm';
 
+const API_PREFIX = '/api/v1';
 let connection: Connection;
 
 describe('Authenticate User', () => {
@@ -29,7 +30,7 @@ describe('Authenticate User', () => {
   });
 
   it('Should be able to authenticate user', async () => {
-    const response = await request(app).post('/sessions').send({
+    const response = await request(app).post(`${API_PREFIX}/sessions`).send({
       email: 'admin@dgs.com.br',
       password: 'admin',
     });
