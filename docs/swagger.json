@@ -7,8 +7,18 @@
     "contact": {
       "name": "Danilo Souza",
       "email": "danilo_souza19@outlook.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://mit-license.org"
     }
   },
+  "servers": [
+    {
+      "url": "http://localhost:3335/api/v1",
+      "description": "Local Dev environment"
+    }
+  ],
   "paths": {
     "/sessions": {
       "post": {
