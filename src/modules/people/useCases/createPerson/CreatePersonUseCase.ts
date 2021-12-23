@@ -3,7 +3,8 @@ import { IPeopleAddressRepository } from '@modules/people/repositories/IPeopleAd
 import { IPeopleRepository } from '@modules/people/repositories/IPeopleRepository';
 import { inject, injectable } from 'tsyringe';
 
-import { AppError } from '@shared/errors/AppError';
+import { AddressNotFound } from './errors/AddressNotFoundError';
+import { DocumentIdAlreadyExistsError } from './errors/DocumentIdAlreadyExistsError';
 
 interface IRequest {
   name: string;
@@ -36,7 +37,7 @@ class CreatePersonUseCase {
     );
 
     if (personExists) {
-      throw new AppError('Document id already exists');
+      throw new DocumentIdAlreadyExistsError();
     }
 
     const addressExist = await this.peopleAddressRepository.findById(
@@ -44,7 +45,7 @@ class CreatePersonUseCase {
     );
 
     if (!addressExist) {
-      throw new AppError('Address does not found');
+      throw new AddressNotFound();
     }
 
     const person = await this.peopleRepository.create({
