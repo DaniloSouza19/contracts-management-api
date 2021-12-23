@@ -10,7 +10,7 @@ const API_PREFIX = '/api/v1';
 let connection: Connection;
 let token: string;
 
-describe('Create a User', () => {
+describe('Create a Person Address', () => {
   beforeAll(async () => {
     connection = await createConnection();
 
@@ -40,7 +40,7 @@ describe('Create a User', () => {
     await connection.close();
   });
 
-  it('Should be able to create an user', async () => {
+  it('Should be able to create a Person Address', async () => {
     const response = await request(app)
       .post(`${API_PREFIX}/people-address`)
       .send({
