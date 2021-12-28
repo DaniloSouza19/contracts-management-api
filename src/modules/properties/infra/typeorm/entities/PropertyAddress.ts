@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 
-@Entity('property_address')
+@Entity('properties_address')
 class PropertyAddress {
   @PrimaryColumn()
   id: string;

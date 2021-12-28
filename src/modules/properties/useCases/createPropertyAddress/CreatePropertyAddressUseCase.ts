@@ -1,5 +1,6 @@
-import { PropertyAddress } from '../infra/typeorm/entities/PropertyAddress';
-import { IPropertiesAddressRepository } from '../repositories/IPropertiesAddressRepository';
+import { PropertyAddress } from '@modules/properties/infra/typeorm/entities/PropertyAddress';
+import { IPropertiesAddressRepository } from '@modules/properties/repositories/IPropertiesAddressRepository';
+import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
   postal_code: string;
@@ -9,8 +10,10 @@ interface IRequest {
   neighborhood: string;
 }
 
+@injectable()
 class CreatePropertyAddressUseCase {
   constructor(
+    @inject('PropertiesAddressRepository')
     private propertiesAddressRepository: IPropertiesAddressRepository
   ) {}
 
