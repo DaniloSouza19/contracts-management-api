@@ -1,5 +1,5 @@
 import { ICreatePropertyAddressDTO } from '@modules/properties/dtos/ICreatePropertyAddressDTO';
-import { PropertyAddress } from '@modules/properties/infra/typeorm/PropertyAddress';
+import { PropertyAddress } from '@modules/properties/infra/typeorm/entities/PropertyAddress';
 
 import { IPropertiesAddressRepository } from '../IPropertiesAddressRepository';
 

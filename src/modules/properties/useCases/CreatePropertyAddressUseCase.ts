@@ -1,4 +1,4 @@
-import { PropertyAddress } from '../infra/typeorm/PropertyAddress';
+import { PropertyAddress } from '../infra/typeorm/entities/PropertyAddress';
 import { IPropertiesAddressRepository } from '../repositories/IPropertiesAddressRepository';
 
 interface IRequest {
