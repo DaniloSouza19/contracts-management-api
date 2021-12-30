@@ -41,6 +41,10 @@ class PeopleRepository implements IPeopleRepository {
       relations: ['address'],
     });
   }
+
+  async findById(id: string): Promise<Person | undefined> {
+    return this.repository.findOne(id);
+  }
 }
 
 export { PeopleRepository };

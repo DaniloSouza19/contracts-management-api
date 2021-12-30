@@ -37,6 +37,12 @@ class PeopleRepositoryInMemory implements IPeopleRepository {
 
     return person;
   }
+
+  async findById(id: string): Promise<Person | undefined> {
+    const person = this.people.find((person) => person.id === id);
+
+    return person;
+  }
 }
 
 export { PeopleRepositoryInMemory };

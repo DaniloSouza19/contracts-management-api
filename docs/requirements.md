@@ -31,6 +31,15 @@
 - [x] Para cadastrar um endereço o usuário deve ser um administrador
 - [x] Será possível somente um endereço para cada pessoa.
 
+## Cadastro de endereço de imovel (Property_address)
+
+**RF**
+- [x] Deve ser possível cadastrar um endereço para uma imovel.
+
+**RN**
+- [x] Para cadastrar um endereço o usuário deve ser um administrador
+- [x] Será possível somente um endereço para cada imovel.
+
 ## Cadastro de imovel (Property)
 
 **RF**
@@ -38,17 +47,9 @@
 
 **RN**
 - [] Para cadastrar um imóvel, o usuário deve ser um administrador.
-- [] Ao cadastrar um imóvel deve ser associa-lo a um proprietário. (user_id)
-- [] Não deve ser possível cadastrar um imóvel associando um proprietário não existente
-
-## Cadastro de endereço de imovel (Property_address)
-
-**RF**
-- [] Deve ser possível cadastrar um endereço para uma imovel.
-
-**RN**
-- [] Para cadastrar um endereço o usuário deve ser um administrador
-- [] Será possível somente um endereço para cada imovel.
+- [x] Ao cadastrar um imóvel deve ser associa-lo a um proprietário. (person_id)
+- [x] Não deve ser possível cadastrar um imóvel associando um proprietário não existente.
+- [] Não deve ser possível cadastrar um imóvel associando um endereço inexistente.
 
 ## Cadastro de contratos (Contracts)
 
