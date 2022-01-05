@@ -31,7 +31,7 @@
 - [x] Para cadastrar um endereço o usuário deve ser um administrador
 - [x] Será possível somente um endereço para cada pessoa.
 
-## Cadastro de endereço de imovel (Property_address)
+## Cadastro de endereço de imóvel (Property_address)
 
 **RF**
 - [x] Deve ser possível cadastrar um endereço para uma imovel.
@@ -40,7 +40,7 @@
 - [x] Para cadastrar um endereço o usuário deve ser um administrador
 - [x] Será possível somente um endereço para cada imovel.
 
-## Cadastro de imovel (Property)
+## Cadastro de imóvel (Property)
 
 **RF**
 - [x] Deve ser possível cadastrar um imovel.
