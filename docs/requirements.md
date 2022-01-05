@@ -43,13 +43,13 @@
 ## Cadastro de imovel (Property)
 
 **RF**
-- [] Deve ser possível cadastrar um imovel.
+- [x] Deve ser possível cadastrar um imovel.
 
 **RN**
-- [] Para cadastrar um imóvel, o usuário deve ser um administrador.
+- [x] Para cadastrar um imóvel, o usuário deve ser um administrador.
 - [x] Ao cadastrar um imóvel deve ser associa-lo a um proprietário. (person_id)
 - [x] Não deve ser possível cadastrar um imóvel associando um proprietário não existente.
-- [] Não deve ser possível cadastrar um imóvel associando um endereço inexistente.
+- [x] Não deve ser possível cadastrar um imóvel associando um endereço inexistente.
 
 ## Cadastro de contratos (Contracts)
 
