@@ -203,6 +203,88 @@
           }
         ]
       }
+    },
+    "/properties-address": {
+      "post": {
+        "tags": [
+          "Property"
+        ],
+        "summary": "Create a property address",
+        "description": "Create a property address",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PropertyAddress"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonAddress"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {}
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/properties": {
+      "post": {
+        "tags": [
+          "Property"
+        ],
+        "summary": "Create a Property",
+        "description": "Create a Property",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Property"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Property"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {
+            "description": "Person (owner_id) or address does dot exists or fields validation failed"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -325,6 +407,107 @@
           "telephone": "62 9 9999-9999",
           "email": "johndoe@example.com",
           "address_id": "e0bc11f8-f163-4271-a95a-96de27699478"
+        }
+      },
+      "PropertyAddress": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "postal_code": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "neighborhood": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "Date"
+          },
+          "updated_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "postal_code",
+          "street",
+          "city",
+          "neighborhood"
+        ],
+        "example": {
+          "postal_code": "75100000",
+          "street": "Some Street",
+          "state": "GO",
+          "city": "Some City",
+          "neighborhood": "Some neighborhood"
+        }
+      },
+      "Property": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "owner_id": {
+            "type": "string"
+          },
+          "is_legal_person": {
+            "type": "boolean"
+          },
+          "address_id": {
+            "type": "string"
+          },
+          "iptu_id": {
+            "type": "string"
+          },
+          "registration_id": {
+            "type": "string"
+          },
+          "registry_office": {
+            "type": "string"
+          },
+          "measure_type": {
+            "type": "string"
+          },
+          "measure_amount": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "Date"
+          },
+          "updated_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "description",
+          "owner_id",
+          "address_id",
+          "iptu_id",
+          "registration_id",
+          "registry_office",
+          "measure_type",
+          "measure_amount"
+        ],
+        "example": {
+          "description": "some property",
+          "address_id": "e0bc11f8-f163-4271-a95a-96de27699478",
+          "iptu_id": "123.4555.555.55",
+          "owner_id": "e0bc11f8-f163-4271-a95a-96de27699478",
+          "registration_id": "123123123",
+          "registry_office": "Some Office",
+          "measure_type": "m2",
+          "measure_amount": 55
         }
       }
     },
