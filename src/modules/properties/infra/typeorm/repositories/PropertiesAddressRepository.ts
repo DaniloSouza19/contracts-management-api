@@ -30,6 +30,10 @@ class PropertiesAddressRepository implements IPropertiesAddressRepository {
 
     return propertyAddress;
   }
+
+  async findById(id: string): Promise<PropertyAddress | undefined> {
+    return this.repository.findOne(id);
+  }
 }
 
 export { PropertiesAddressRepository };

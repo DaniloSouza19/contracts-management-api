@@ -29,6 +29,12 @@ class PropertiesAddressRepositoryInMemory
 
     return propertyAddress;
   }
+
+  async findById(id: string): Promise<PropertyAddress | undefined> {
+    return this.propertiesAddress.find(
+      (propertyAddress) => propertyAddress.id === id
+    );
+  }
 }
 
 export { PropertiesAddressRepositoryInMemory };

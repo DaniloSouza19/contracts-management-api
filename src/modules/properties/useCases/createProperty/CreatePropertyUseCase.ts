@@ -1,8 +1,11 @@
 import { IPeopleRepository } from '@modules/people/repositories/IPeopleRepository';
 import { Property } from '@modules/properties/infra/typeorm/entities/Property';
+import { IPropertiesAddressRepository } from '@modules/properties/repositories/IPropertiesAddressRepository';
 import { IPropertiesRepository } from '@modules/properties/repositories/IPropertiesRepository';
+import { inject, injectable } from 'tsyringe';
 
 import { PersonDoesNotExistsError } from './errors/PersonDoesNotExistsError';
+import { PropertyAddressDoesNotExistsError } from './errors/PropertyAddressDoesNotExistsError';
 
 interface IRequest {
   description: string;
@@ -15,10 +18,15 @@ interface IRequest {
   measure_amount: number;
 }
 
+@injectable()
 class CreatePropertyUseCase {
   constructor(
+    @inject('PropertiesRepository')
     private propertiesRepository: IPropertiesRepository,
-    private peopleRepository: IPeopleRepository
+    @inject('PeopleRepository')
+    private peopleRepository: IPeopleRepository,
+    @inject('PropertiesAddressRepository')
+    private propertiesAddressRepository: IPropertiesAddressRepository
   ) {}
 
   async execute({
@@ -35,6 +43,14 @@ class CreatePropertyUseCase {
 
     if (!personExists) {
       throw new PersonDoesNotExistsError();
+    }
+
+    const propertyAddress = await this.propertiesAddressRepository.findById(
+      address_id
+    );
+
+    if (!propertyAddress) {
+      throw new PropertyAddressDoesNotExistsError();
     }
 
     const property = await this.propertiesRepository.create({
