@@ -1,5 +1,5 @@
 import { ICreateContractDTO } from '@modules/contracts/dtos/ICreateContractDTO';
-import { Contract } from '@modules/contracts/infra/Contract';
+import { Contract } from '@modules/contracts/infra/entities/Contract';
 
 import { IContractsRepository } from '../IContractsRepository';
 

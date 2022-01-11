@@ -24,6 +24,10 @@ export class CreateContracts1641902110427 implements MigrationInterface {
             type: 'uuid',
           },
           {
+            name: 'property_id',
+            type: 'uuid',
+          },
+          {
             name: 'price',
             type: 'numeric',
           },
@@ -46,10 +50,12 @@ export class CreateContracts1641902110427 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
+            default: 'now()',
           },
           {
             name: 'updated_at',
             type: 'timestamp',
+            default: 'now()',
           },
         ],
         foreignKeys: [
@@ -66,6 +72,14 @@ export class CreateContracts1641902110427 implements MigrationInterface {
             columnNames: ['customer_id'],
             referencedColumnNames: ['id'],
             referencedTableName: 'people',
+            onDelete: 'SET NULL',
+            onUpdate: 'SET NULL',
+          },
+          {
+            name: 'FKPropertiesContracts',
+            columnNames: ['property_id'],
+            referencedColumnNames: ['id'],
+            referencedTableName: 'properties',
             onDelete: 'SET NULL',
             onUpdate: 'SET NULL',
           },

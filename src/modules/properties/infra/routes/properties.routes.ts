@@ -16,8 +16,8 @@ propertiesRouter.post(
   celebrate({
     [Segments.BODY]: Joi.object({
       description: Joi.string(),
-      owner_id: Joi.string(),
-      address_id: Joi.string(),
+      owner_id: Joi.string().uuid(),
+      address_id: Joi.string().uuid(),
       iptu_id: Joi.string(),
       registration_id: Joi.string(),
       registry_office: Joi.string(),
