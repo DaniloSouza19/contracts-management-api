@@ -54,15 +54,17 @@
 ## Cadastro de contratos (Contracts)
 
 **RF**
-- [] Deve ser possível cadastrar um contrato.
+- [x] Deve ser possível cadastrar um contrato.
+- [x] Ao cadastrar um contrato deve ser associa-lo a um contratante. (contractor_id -> Users)
+- [x] Ao cadastrar um contrato deve ser associa-lo a um contratado. (customer_id -> Users)
+- [] O Contrato deve ter um período de validade associado (inicio e fim).
 
 **RN**
 - [] Para cadastrar um contrato, o usuário deve ser um administrador.
-- [] Ao cadastrar um contrato deve ser associa-lo a um contratante. (contractor_id -> Users)
-- [] Ao cadastrar um contrato deve ser associa-lo a um contratado. (customer_id -> Users)
-- [] O Contrato deve ter um período de validade associado (inicio e fim).
-- [] Não deve ser possível cadastrar um contrato com um contratante inexistente.
-- [] Não deve ser possível cadastrar um contrato com um contratado inexistente.
+- [x] Não deve ser possível cadastrar um contrato com um contratante inexistente.
+- [x] Não deve ser possível cadastrar um contrato com um contratado inexistente.
+- [] Não deve ser possível cadastrar um contrato com um imóvel inexistente.
+- [] Não deve ser possível cadastrar um contrato com data final menor que a data inicio.
 
 ## Lançamento/registro de pagamentos (Payments)
 
