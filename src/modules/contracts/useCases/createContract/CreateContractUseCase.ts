@@ -1,13 +1,14 @@
-import { ContractorDoesNotFound } from '@modules/contracts/errors/ContractorDoesNotFoundError';
-import { CustomerDoesNotFound } from '@modules/contracts/errors/CustomerDoesNotFoundError';
-import { InvalidEndDateError } from '@modules/contracts/errors/InvalidEndDateError';
-import { PropertyDoesNotFoundError } from '@modules/contracts/errors/PropertyDoesNotFoundError';
 import { Contract } from '@modules/contracts/infra/entities/Contract';
 import { IContractsRepository } from '@modules/contracts/repositories/IContractsRepository';
 import { IPeopleRepository } from '@modules/people/repositories/IPeopleRepository';
 import { IPropertiesRepository } from '@modules/properties/repositories/IPropertiesRepository';
 import { isBefore } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
+
+import { ContractorDoesNotFound } from './errors/ContractorDoesNotFoundError';
+import { CustomerDoesNotFound } from './errors/CustomerDoesNotFoundError';
+import { InvalidEndDateError } from './errors/InvalidEndDateError';
+import { PropertyDoesNotFoundError } from './errors/PropertyDoesNotFoundError';
 
 interface IRequest {
   description: string;
