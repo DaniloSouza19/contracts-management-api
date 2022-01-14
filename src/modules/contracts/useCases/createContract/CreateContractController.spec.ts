@@ -102,9 +102,6 @@ describe('Create a new Contract', () => {
     const start_date = new Date().toISOString();
     const end_date = addYears(new Date(), 1).toISOString();
 
-    console.log(start_date);
-    console.log(end_date);
-
     const response = await request(app)
       .post(`${API_PREFIX}/contracts`)
       .send({
@@ -112,7 +109,7 @@ describe('Create a new Contract', () => {
         customer_id,
         property_id,
         price: 1200,
-        start_date: new Date(),
+        start_date,
         end_date,
         registration_id: '123456',
         registry_office: 'Some office',
@@ -121,6 +118,9 @@ describe('Create a new Contract', () => {
         Authorization: `Bearer ${token}`,
       });
 
-    console.log(response.body);
+    expect(response.statusCode).toBe(201);
+    expect(response.body).toHaveProperty('id');
+    expect(response.body.description).toBe('Rent contract example');
+    expect(response.body.price).toBe(1200);
   });
 });
