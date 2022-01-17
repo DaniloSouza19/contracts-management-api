@@ -58,7 +58,7 @@
 - [x] Ao cadastrar um contrato deve ser associado a um imóvel.
 - [x] Ao cadastrar um contrato deve ser associa-lo a um contratante. (deve ser o dono do imóvel)
 - [x] Ao cadastrar um contrato deve ser associa-lo a um contratado. (customer_id -> Users)
-- [] O Contrato deve ter um período de validade associado (inicio e fim).
+- [x] O Contrato deve ter um período de validade associado (inicio e fim).
 
 **RN**
 - [x] Para cadastrar um contrato, o usuário deve ser um administrador.
@@ -70,12 +70,21 @@
 ## Lançamento/registro de pagamentos (Payments)
 
 **RF**
-- [] Deve ser possível cadastrar/registrar um pagamento.
+- [x] Deve ser possível cadastrar/registrar um pagamento.
 
 **RN**
 - [] Para registrar um pagamento, o usuário deve ser um administrador.
-- [] Não deve ser possível registrar um pagamento com um contrato inexistente.
-- [] Não deve ser possível registrar um pagamento com um contrato vencido.
+- [x] Não deve ser possível registrar um pagamento com um contrato inexistente.
+- [x] Não deve ser possível registrar um pagamento com um contrato vencido.
+
+## Realizar pagamentos (Payments)
+
+**RF**
+- [x] Deve ser possível realizar um pagamento.
+
+**RN**
+- [] Para realizar um pagamento, o usuário deve ser um administrador.
+- [] Não deve ser possível realizar um pagamento com uma data posterior a data atual.
 
 ## Renovação de contratos (Contracts_renewal_history)
 
@@ -85,4 +94,4 @@
 **RN**
 - [] Não deve ser possível renovar um contrato inexistente.
 - [] Ao renovar um contrato a data inicio deverá ser informada não prendendo a data de renovação (data atual)
-- [] Deve registrar um historico de renovação de contratos, contendo o valor anterior, data de contrato anterior (incio e fim) e data da renovação. (Renovations_contracts)
+- [] Deve registrar um histórico de renovação de contratos, contendo o valor anterior, data de contrato anterior (incio e fim) e data da renovação. (Renovations_contracts)

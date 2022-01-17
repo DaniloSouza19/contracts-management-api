@@ -38,6 +38,10 @@ class ContractsRepository implements IContractsRepository {
 
     return contract;
   }
+
+  async findById(id: string): Promise<Contract | undefined> {
+    return this.repository.findOne(id);
+  }
 }
 
 export { ContractsRepository };

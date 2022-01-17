@@ -35,6 +35,12 @@ class ContractsRepositoryInMemory implements IContractsRepository {
 
     return contract;
   }
+
+  async findById(id: string): Promise<Contract | undefined> {
+    const contract = this.contracts.find((contract) => contract.id === id);
+
+    return contract;
+  }
 }
 
 export { ContractsRepositoryInMemory };
