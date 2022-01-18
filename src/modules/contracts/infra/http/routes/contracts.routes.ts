@@ -1,4 +1,5 @@
 import { CreateContractController } from '@modules/contracts/useCases/createContract/CreateContractController';
+import { CreatePaymentController } from '@modules/contracts/useCases/createPayment/CreatePaymentController';
 import { Joi, Segments, celebrate } from 'celebrate';
 import { Router } from 'express';
 
@@ -8,6 +9,8 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 const contractsRouter = Router();
 
 const createContractController = new CreateContractController();
+
+const createPaymentUseCase = new CreatePaymentController();
 
 contractsRouter.post(
   '/',
@@ -26,6 +29,25 @@ contractsRouter.post(
     }),
   }),
   createContractController.handle
+);
+
+contractsRouter.post(
+  '/:contract_id/payments',
+  ensureAuthenticated,
+  ensureAdmin,
+  celebrate({
+    [Segments.PARAMS]: {
+      contract_id: Joi.string().uuid().required(),
+    },
+    [Segments.BODY]: {
+      description: Joi.string().required(),
+      due_date: Joi.date().required(),
+      payment_date: Joi.date(),
+      additional_fees: Joi.number(),
+      discount: Joi.number(),
+    },
+  }),
+  createPaymentUseCase.handle
 );
 
 export { contractsRouter };

@@ -19,6 +19,7 @@ interface IRequest {
 @injectable()
 class CreatePaymentUseCase {
   constructor(
+    @inject('PaymentsRepository')
     private paymentsRepository: IPaymentsRepository,
     @inject('ContractsRepository')
     private contractsRepository: IContractsRepository
