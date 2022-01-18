@@ -81,6 +81,7 @@
 
 **RF**
 - [x] Deve ser possível realizar um pagamento.
+- [x] O usuário poderá informar uma data de pagamento.
 
 **RN**
 - [] Para realizar um pagamento, o usuário deve ser um administrador.
