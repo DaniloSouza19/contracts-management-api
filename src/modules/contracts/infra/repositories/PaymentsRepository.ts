@@ -38,13 +38,15 @@ class PaymentsRepository implements IPaymentsRepository {
   }
 
   async toPay({ payment_date, payment_id }: IToPayDTO): Promise<void> {
-    const payment = await this.repository.findOne(payment_id);
-
-    if (payment) {
-      payment.payment_date = payment_date;
-      payment.is_paid = true;
-      await this.repository.save(payment);
-    }
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({
+        is_paid: true,
+        payment_date,
+      })
+      .where('id = :id', { id: payment_id })
+      .execute();
   }
 
   async findById(id: string): Promise<Payment | undefined> {

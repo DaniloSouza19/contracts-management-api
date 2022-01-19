@@ -73,7 +73,7 @@
 - [x] Deve ser possível cadastrar/registrar um pagamento.
 
 **RN**
-- [] Para registrar um pagamento, o usuário deve ser um administrador.
+- [x] Para registrar um pagamento, o usuário deve ser um administrador.
 - [x] Não deve ser possível registrar um pagamento com um contrato inexistente.
 - [x] Não deve ser possível registrar um pagamento com um contrato vencido.
 
@@ -84,8 +84,8 @@
 - [x] O usuário poderá informar uma data de pagamento.
 
 **RN**
-- [] Para realizar um pagamento, o usuário deve ser um administrador.
-- [] Não deve ser possível realizar um pagamento com uma data posterior a data atual.
+- [x] Para realizar um pagamento, o usuário deve ser um administrador.
+- [x] Não deve ser possível realizar um pagamento com uma data posterior a data atual.
 
 ## Renovação de contratos (Contracts_renewal_history)
 
