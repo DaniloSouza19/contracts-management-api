@@ -9,7 +9,7 @@ const paymentsRouter = Router();
 
 const makePaymentController = new MakePaymentController();
 
-paymentsRouter.post(
+paymentsRouter.put(
   '/:payment_id/pay',
   ensureAuthenticated,
   ensureAdmin,

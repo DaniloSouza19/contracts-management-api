@@ -137,7 +137,7 @@ describe('Make a Payment', () => {
     const now = new Date();
 
     const response = await request(app)
-      .post(`${API_PREFIX}/payments/${paymentId}/pay`)
+      .put(`${API_PREFIX}/payments/${paymentId}/pay`)
       .send({
         payment_date: now,
       })
