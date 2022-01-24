@@ -95,4 +95,4 @@
 **RN**
 - [x] Não deve ser possível renovar um contrato inexistente.
 - [x] Ao renovar um contrato a data inicio deverá ser informada não prendendo a data de renovação (data atual)
-- [] Deve registrar um histórico de renovação de contratos, contendo o valor anterior, data de contrato anterior (incio e fim) e data da renovação. (Renovations_contracts)
+- [x] Deve registrar um histórico de renovação de contratos, contendo o valor anterior, data de contrato anterior (incio e fim) e data da renovação. (Renovations_contracts)

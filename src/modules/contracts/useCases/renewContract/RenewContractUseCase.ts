@@ -1,6 +1,7 @@
 import { ContractRenewHistory } from '@modules/contracts/infra/entities/ContractsRenewHistory';
 import { IContractsRenewHistoryRepository } from '@modules/contracts/repositories/IContractsRenewHistoryRepository';
 import { IContractsRepository } from '@modules/contracts/repositories/IContractsRepository';
+import { inject, injectable } from 'tsyringe';
 
 import { ContractDoesNotExistsError } from './errors/ContractDoesNotExistsError';
 
@@ -11,9 +12,12 @@ interface IRequest {
   price: number;
 }
 
+@injectable()
 class RenewContractUseCase {
   constructor(
+    @inject('ContractsRepository')
     private contractsRepository: IContractsRepository,
+    @inject('ContractsRenewHistoryRepository')
     private contractsRenewHistoryRepository: IContractsRenewHistoryRepository
   ) {}
 

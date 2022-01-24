@@ -1,5 +1,6 @@
 import { CreateContractController } from '@modules/contracts/useCases/createContract/CreateContractController';
 import { CreatePaymentController } from '@modules/contracts/useCases/createPayment/CreatePaymentController';
+import { RenewContractController } from '@modules/contracts/useCases/renewContract/RenewContractController';
 import { Joi, Segments, celebrate } from 'celebrate';
 import { Router } from 'express';
 
@@ -11,6 +12,8 @@ const contractsRouter = Router();
 const createContractController = new CreateContractController();
 
 const createPaymentUseCase = new CreatePaymentController();
+
+const renewContractController = new RenewContractController();
 
 contractsRouter.post(
   '/',
@@ -48,6 +51,23 @@ contractsRouter.post(
     },
   }),
   createPaymentUseCase.handle
+);
+
+contractsRouter.post(
+  '/:contract_id/renew',
+  ensureAuthenticated,
+  ensureAdmin,
+  celebrate({
+    [Segments.PARAMS]: {
+      contract_id: Joi.string().uuid().required(),
+    },
+    [Segments.BODY]: {
+      end_date: Joi.date().required(),
+      start_date: Joi.date().required(),
+      price: Joi.number().required(),
+    },
+  }),
+  renewContractController.handle
 );
 
 export { contractsRouter };
