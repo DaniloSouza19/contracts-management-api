@@ -1,5 +1,7 @@
 import { IContractsRepository } from '@modules/contracts/repositories/IContractsRepository';
 
+import { ContractDoesNotExistsError } from './errors/ContractDoesNotExistsError';
+
 interface IRequest {
   contract_id: string;
   start_date: Date;
@@ -16,6 +18,12 @@ class RenewContractUseCase {
     start_date,
     price,
   }: IRequest): Promise<void> {
+    const contractExists = await this.contractsRepository.findById(contract_id);
+
+    if (!contractExists) {
+      throw new ContractDoesNotExistsError();
+    }
+
     await this.contractsRepository.renew({
       contract_id,
       end_date,
