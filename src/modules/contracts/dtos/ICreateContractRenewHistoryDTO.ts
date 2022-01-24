@@ -1,5 +1,4 @@
 interface ICreateContractRenewHistoryDTO {
-  id: string;
   contract_id: string;
   new_price: number;
   old_price: number;

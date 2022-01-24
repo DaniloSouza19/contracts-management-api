@@ -3,14 +3,13 @@ import { ContractRenewHistory } from '@modules/contracts/infra/entities/Contract
 
 import { IContractsRenewHistoryRepository } from '../IContractsRenewHistoryRepository';
 
-class ContractsRenewHistoryInMemory
+class ContractsRenewHistoryRepositoryInMemory
   implements IContractsRenewHistoryRepository
 {
-  private contractsRenewHistory: ContractRenewHistory[];
+  private contractsRenewHistory: ContractRenewHistory[] = [];
 
   async create({
     contract_id,
-    id,
     new_end_date,
     new_price,
     new_start_date,
@@ -22,7 +21,6 @@ class ContractsRenewHistoryInMemory
 
     Object.assign(contractRenewHistory, {
       contract_id,
-      id,
       new_end_date,
       new_price,
       new_start_date,
@@ -37,4 +35,4 @@ class ContractsRenewHistoryInMemory
   }
 }
 
-export { ContractsRenewHistoryInMemory };
+export { ContractsRenewHistoryRepositoryInMemory };
