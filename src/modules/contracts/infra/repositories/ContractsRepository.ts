@@ -1,4 +1,5 @@
 import { ICreateContractDTO } from '@modules/contracts/dtos/ICreateContractDTO';
+import { IRenewContractDTO } from '@modules/contracts/dtos/IRenewContractDTO';
 import { IContractsRepository } from '@modules/contracts/repositories/IContractsRepository';
 import { getRepository, Repository } from 'typeorm';
 
@@ -41,6 +42,25 @@ class ContractsRepository implements IContractsRepository {
 
   async findById(id: string): Promise<Contract | undefined> {
     return this.repository.findOne(id);
+  }
+
+  async renew({
+    contract_id,
+    end_date,
+    start_date,
+    price,
+  }: IRenewContractDTO): Promise<void> {
+    const contract = await this.repository.findOne(contract_id);
+
+    if (contract) {
+      Object.assign(contract, {
+        start_date,
+        end_date,
+        price,
+      });
+
+      await this.repository.save(contract);
+    }
   }
 }
 
