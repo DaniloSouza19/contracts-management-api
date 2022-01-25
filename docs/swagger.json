@@ -285,6 +285,175 @@
           }
         ]
       }
+    },
+    "/contracts": {
+      "post": {
+        "tags": [
+          "Contracts"
+        ],
+        "summary": "Create a Contract",
+        "description": "Create a Contract",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contract"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contract"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {
+            "description": "Validation fields failed"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/contracts/{contract_id}/payments": {
+      "post": {
+        "tags": [
+          "Contracts"
+        ],
+        "summary": "Create a new Payment of property",
+        "description": "Create a new Payment",
+        "parameters": [
+          {
+            "name": "contract_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "contract id (uuid)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Payment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {
+            "description": "Fields validation failed or contract does not exists"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/contracts/{contract_id}/renew": {
+      "post": {
+        "tags": [
+          "Contracts"
+        ],
+        "summary": "Renew a contract",
+        "description": "Renew a contract",
+        "parameters": [
+          {
+            "name": "contract_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "contract id (uuid)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "number"
+                  },
+                  "start_date": {
+                    "type": "Date"
+                  },
+                  "end_date": {
+                    "type": "Date"
+                  }
+                },
+                "required": [
+                  "price",
+                  "start_date",
+                  "end_date"
+                ],
+                "example": {
+                  "start_date": "2023-02-19T17:11:25.441Z",
+                  "end_date": "2024-02-19T17:11:25.441Z",
+                  "price": 1500
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successfully renewed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractRenewHistory"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "400": {
+            "description": "Fields validation failed or contract does not exists"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -508,6 +677,160 @@
           "registry_office": "Some Office",
           "measure_type": "m2",
           "measure_amount": 55
+        }
+      },
+      "Contract": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "contractor_id": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "boolean"
+          },
+          "property_id": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "start_date": {
+            "type": "Date"
+          },
+          "end_date": {
+            "type": "Date"
+          },
+          "registration_id": {
+            "type": "string"
+          },
+          "registry_office": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "Date"
+          },
+          "updated_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "description",
+          "customer_id",
+          "property_id",
+          "price",
+          "start_date",
+          "end_date",
+          "registration_id",
+          "registry_office"
+        ],
+        "example": {
+          "description": "Rent contract example",
+          "contractor_id": "e336be87-05c2-4b57-9c4a-94bbb59cf225",
+          "customer_id": "2f0af6e8-9141-491e-b9b2-81d6f6c6e2f3",
+          "property_id": "5936f67c-793c-475e-8c15-c55891194d73",
+          "price": 1200,
+          "start_date": "2022-01-11T20:34:09.872Z",
+          "end_date": "2023-01-10T20:34:09.872Z",
+          "registration_id": "123456",
+          "registry_office": "some office"
+        }
+      },
+      "Payment": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "contract_id": {
+            "type": "string"
+          },
+          "due_date": {
+            "type": "Date"
+          },
+          "is_paid": {
+            "type": "boolean"
+          },
+          "value": {
+            "type": "number"
+          },
+          "additional_fees": {
+            "type": "number"
+          },
+          "discount": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "Date"
+          },
+          "updated_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "description",
+          "contract_id",
+          "due_date"
+        ],
+        "example": {
+          "description": "Second Payment",
+          "due_date": "2022-02-19T17:11:25.441Z",
+          "value": 1200,
+          "additional_fees": 15,
+          "discount": 0
+        }
+      },
+      "ContractRenewHistory": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "contract_id": {
+            "type": "string"
+          },
+          "new_price": {
+            "type": "number"
+          },
+          "old_price": {
+            "type": "number"
+          },
+          "new_start_date": {
+            "type": "Date"
+          },
+          "old_start_date": {
+            "type": "Date"
+          },
+          "new_end_date": {
+            "type": "number"
+          },
+          "old_end_date": {
+            "type": "Date"
+          },
+          "created_at": {
+            "type": "Date"
+          }
+        },
+        "required": [
+          "start_date",
+          "end_date",
+          "price"
+        ],
+        "example": {
+          "id": "1d864f7d-9738-4df4-aa3b-757c25bac052",
+          "contract_id": "d04c36fc-a188-46aa-98fa-8ac95f7325f2",
+          "new_price": 1500,
+          "old_price": 1200,
+          "new_start_date": "2023-02-19T17:11:25.441Z",
+          "new_end_date": "2024-02-19T17:11:25.441Z",
+          "old_start_date": "2022-01-11T20:34:09.872Z",
+          "old_end_date": "2023-01-10T20:34:09.872Z",
+          "created_at": "2022-01-25T17:18:01.974Z"
         }
       }
     },
