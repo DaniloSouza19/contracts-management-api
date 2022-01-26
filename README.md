@@ -1,9 +1,15 @@
 # Welcome to contracts-management-api 👋
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](http://localhost:3333/api/docs)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](http://localhost:3335/api/docs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
 > API to manager contracts
+
+## ER Diagram
+<img src="./docs/ER_diagram.png" />
+
+## App Requirements
+* [all requirements here (pt-BR)](./docs/requirements.md)
 
 ## Techs
 
