@@ -1,11 +1,17 @@
+import { Person } from '@modules/people/infra/typeorm/entities/Person';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
+
+import { PropertyAddress } from './PropertyAddress';
 
 @Entity('properties')
 class Property {
@@ -35,6 +41,22 @@ class Property {
 
   @Column('numeric')
   measure_amount: number;
+
+  @ManyToOne(() => Person, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'owner_id',
+  })
+  owner: Person;
+
+  @OneToOne(() => PropertyAddress, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'address_id',
+  })
+  address: PropertyAddress;
 
   @CreateDateColumn()
   created_at: Date;

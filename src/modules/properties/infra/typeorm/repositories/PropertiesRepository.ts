@@ -40,6 +40,12 @@ class PropertiesRepository implements IPropertiesRepository {
   async findById(id: string): Promise<Property | undefined> {
     return this.repository.findOne(id);
   }
+
+  async list(): Promise<Property[]> {
+    return this.repository.find({
+      relations: ['address', 'owner'],
+    });
+  }
 }
 
 export { PropertiesRepository };
