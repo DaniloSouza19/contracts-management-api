@@ -43,6 +43,10 @@ class PeopleRepositoryInMemory implements IPeopleRepository {
 
     return person;
   }
+
+  async list(): Promise<Person[]> {
+    return this.people;
+  }
 }
 
 export { PeopleRepositoryInMemory };

@@ -34,7 +34,9 @@ class Person {
   @Column()
   address_id: string;
 
-  @OneToOne(() => PersonAddress)
+  @OneToOne(() => PersonAddress, {
+    cascade: true,
+  })
   @JoinColumn({
     name: 'address_id',
   })
