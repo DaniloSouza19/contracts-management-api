@@ -1,4 +1,5 @@
 import { CreatePropertyController } from '@modules/properties/useCases/createProperty/CreatePropertyController';
+import { ListPropertiesController } from '@modules/properties/useCases/ListProperties/ListPropertiesController';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 
@@ -8,6 +9,8 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 const propertiesRouter = Router();
 
 const createPropertyController = new CreatePropertyController();
+
+const listPropertiesController = new ListPropertiesController();
 
 propertiesRouter.post(
   '/',
@@ -27,5 +30,7 @@ propertiesRouter.post(
   }),
   createPropertyController.handle
 );
+
+propertiesRouter.get('/', listPropertiesController.handle);
 
 export { propertiesRouter };

@@ -37,6 +37,10 @@ class PropertiesRepositoryInMemory implements IPropertiesRepository {
   async findById(id: string): Promise<Property | undefined> {
     return this.properties.find((property) => property.id === id);
   }
+
+  async list(): Promise<Property[]> {
+    return this.properties;
+  }
 }
 
 export { PropertiesRepositoryInMemory };
