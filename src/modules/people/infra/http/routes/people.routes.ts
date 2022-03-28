@@ -1,4 +1,5 @@
 import { CreatePersonController } from '@modules/people/useCases/createPerson/CreatePersonController';
+import { ListPeopleController } from '@modules/people/useCases/ListPeople/ListPeopleController';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 
@@ -8,6 +9,7 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 const peopleRouter = Router();
 
 const createPersonController = new CreatePersonController();
+const listPeopleController = new ListPeopleController();
 
 peopleRouter.post(
   '/',
@@ -24,6 +26,13 @@ peopleRouter.post(
     }),
   }),
   createPersonController.handle
+);
+
+peopleRouter.get(
+  '/',
+  ensureAuthenticated,
+  ensureAdmin,
+  listPeopleController.handle
 );
 
 export { peopleRouter };
