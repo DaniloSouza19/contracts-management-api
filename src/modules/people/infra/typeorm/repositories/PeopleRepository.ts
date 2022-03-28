@@ -47,7 +47,9 @@ class PeopleRepository implements IPeopleRepository {
   }
 
   async list(): Promise<Person[]> {
-    return this.repository.find();
+    return this.repository.find({
+      relations: ['address'],
+    });
   }
 }
 
