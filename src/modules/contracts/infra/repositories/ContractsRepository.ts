@@ -62,6 +62,10 @@ class ContractsRepository implements IContractsRepository {
       await this.repository.save(contract);
     }
   }
+
+  async list(): Promise<Contract[]> {
+    return this.repository.find();
+  }
 }
 
 export { ContractsRepository };

@@ -1,5 +1,6 @@
 import { CreateContractController } from '@modules/contracts/useCases/createContract/CreateContractController';
 import { CreatePaymentController } from '@modules/contracts/useCases/createPayment/CreatePaymentController';
+import { ListContractsController } from '@modules/contracts/useCases/ListContracts/ListContractsController';
 import { RenewContractController } from '@modules/contracts/useCases/renewContract/RenewContractController';
 import { Joi, Segments, celebrate } from 'celebrate';
 import { Router } from 'express';
@@ -14,6 +15,8 @@ const createContractController = new CreateContractController();
 const createPaymentUseCase = new CreatePaymentController();
 
 const renewContractController = new RenewContractController();
+
+const listContractsController = new ListContractsController();
 
 contractsRouter.post(
   '/',
@@ -69,5 +72,7 @@ contractsRouter.post(
   }),
   renewContractController.handle
 );
+
+contractsRouter.get('/', listContractsController.handle);
 
 export { contractsRouter };

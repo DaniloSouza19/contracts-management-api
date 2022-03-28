@@ -59,6 +59,10 @@ class ContractsRepositoryInMemory implements IContractsRepository {
       this.contracts[contractIndex].price = price;
     }
   }
+
+  async list(): Promise<Contract[]> {
+    return this.contracts;
+  }
 }
 
 export { ContractsRepositoryInMemory };
