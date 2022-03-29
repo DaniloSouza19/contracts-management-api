@@ -64,7 +64,9 @@ class ContractsRepository implements IContractsRepository {
   }
 
   async list(): Promise<Contract[]> {
-    return this.repository.find();
+    return this.repository.find({
+      relations: ['customer', 'contractor'],
+    });
   }
 }
 
