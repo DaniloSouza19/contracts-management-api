@@ -1,7 +1,10 @@
+import { Person } from '@modules/people/infra/typeorm/entities/Person';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -38,6 +41,22 @@ class Contract {
 
   @Column()
   registry_office: string;
+
+  @ManyToOne(() => Person, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'contractor_id',
+  })
+  contractor: Person;
+
+  @ManyToOne(() => Person, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'customer_id',
+  })
+  customer: Person;
 
   @CreateDateColumn()
   created_at: Date;
