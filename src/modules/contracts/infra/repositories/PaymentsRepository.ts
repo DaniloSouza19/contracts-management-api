@@ -52,6 +52,20 @@ class PaymentsRepository implements IPaymentsRepository {
   async findById(id: string): Promise<Payment | undefined> {
     return this.repository.findOne(id);
   }
+
+  async list(contract_id?: string): Promise<Payment[]> {
+    if (!contract_id) {
+      return this.repository.find({
+        relations: ['contract'],
+      });
+    }
+
+    return this.repository.find({
+      where: {
+        contract_id,
+      },
+    });
+  }
 }
 
 export { PaymentsRepository };

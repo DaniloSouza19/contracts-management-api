@@ -2,10 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
+
+import { Contract } from './Contract';
 
 @Entity('payments')
 class Payment {
@@ -35,6 +39,14 @@ class Payment {
 
   @Column('numeric')
   discount: number;
+
+  @ManyToOne(() => Contract, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'contract_id',
+  })
+  contract: Contract;
 
   @CreateDateColumn()
   created_at: Date;

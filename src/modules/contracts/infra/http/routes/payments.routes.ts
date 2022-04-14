@@ -1,3 +1,4 @@
+import { ListPaymentsController } from '@modules/contracts/useCases/ListPayments/ListPaymentsController';
 import { MakePaymentController } from '@modules/contracts/useCases/makePayment/MakePaymentController';
 import { Joi, Segments, celebrate } from 'celebrate';
 import { Router } from 'express';
@@ -8,6 +9,7 @@ import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthen
 const paymentsRouter = Router();
 
 const makePaymentController = new MakePaymentController();
+const listPaymentsController = new ListPaymentsController();
 
 paymentsRouter.put(
   '/:payment_id/pay',
@@ -22,6 +24,18 @@ paymentsRouter.put(
     },
   }),
   makePaymentController.handle
+);
+
+paymentsRouter.get(
+  '/',
+  ensureAuthenticated,
+  ensureAdmin,
+  celebrate({
+    [Segments.QUERY]: {
+      contract_id: Joi.string().uuid(),
+    },
+  }),
+  listPaymentsController.handle
 );
 
 export { paymentsRouter };
