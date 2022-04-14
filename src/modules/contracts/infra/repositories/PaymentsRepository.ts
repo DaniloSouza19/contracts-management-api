@@ -64,6 +64,7 @@ class PaymentsRepository implements IPaymentsRepository {
       where: {
         contract_id,
       },
+      relations: ['contract'],
     });
   }
 }
