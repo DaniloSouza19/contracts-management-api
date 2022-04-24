@@ -6,8 +6,14 @@ import { CreatePaymentUseCase } from './CreatePaymentUseCase';
 class CreatePaymentController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { contract_id } = request.params;
-    const { description, due_date, payment_date, additional_fees, discount } =
-      request.body;
+    const {
+      description,
+      due_date,
+      payment_date,
+      additional_fees,
+      discount,
+      value,
+    } = request.body;
 
     const createPaymentUseCase = container.resolve(CreatePaymentUseCase);
 
@@ -18,6 +24,7 @@ class CreatePaymentController {
       payment_date,
       additional_fees,
       discount,
+      value: value ? Number(value) : undefined,
     });
 
     return response.status(201).json(payment);

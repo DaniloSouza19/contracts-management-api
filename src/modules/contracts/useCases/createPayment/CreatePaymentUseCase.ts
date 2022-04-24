@@ -10,6 +10,7 @@ import { ContractDoesNotExistsError } from './errors/ContractDoesNotExistsError'
 interface IRequest {
   description: string;
   contract_id: string;
+  value?: number;
   due_date: Date;
   payment_date?: Date;
   additional_fees?: number;
@@ -32,6 +33,7 @@ class CreatePaymentUseCase {
     discount = 0,
     due_date,
     payment_date,
+    value,
   }: IRequest): Promise<Payment> {
     const contractExists = await this.contractsRepository.findById(contract_id);
 
@@ -52,7 +54,7 @@ class CreatePaymentUseCase {
       discount,
       due_date,
       is_paid: !!payment_date,
-      value: contractExists.price,
+      value: value || contractExists.price,
       payment_date,
     });
 

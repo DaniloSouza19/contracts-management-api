@@ -51,6 +51,7 @@ contractsRouter.post(
       payment_date: Joi.date(),
       additional_fees: Joi.number(),
       discount: Joi.number(),
+      value: Joi.number().positive(),
     },
   }),
   createPaymentUseCase.handle
