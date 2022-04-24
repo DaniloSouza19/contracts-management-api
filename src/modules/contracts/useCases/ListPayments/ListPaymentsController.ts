@@ -12,6 +12,16 @@ export class ListPaymentsController {
       contract_id as string | undefined
     );
 
-    return response.json(payments);
+    const contractsWithSubtotal = payments.map((payment) => {
+      return {
+        ...payment,
+        subtotal:
+          Number(payment.value) -
+          Number(payment.discount) +
+          Number(payment.additional_fees),
+      };
+    });
+
+    return response.json(contractsWithSubtotal);
   }
 }
