@@ -74,6 +74,16 @@ contractsRouter.post(
   renewContractController.handle
 );
 
-contractsRouter.get('/', listContractsController.handle);
+contractsRouter.get(
+  '/',
+  ensureAuthenticated,
+  ensureAdmin,
+  celebrate({
+    [Segments.QUERY]: {
+      onlyActive: Joi.boolean().default(false),
+    },
+  }),
+  listContractsController.handle
+);
 
 export { contractsRouter };

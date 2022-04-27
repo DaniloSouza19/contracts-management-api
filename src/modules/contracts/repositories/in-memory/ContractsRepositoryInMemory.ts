@@ -1,6 +1,8 @@
 import { ICreateContractDTO } from '@modules/contracts/dtos/ICreateContractDTO';
+import { IListContractsDTO } from '@modules/contracts/dtos/IListContractsDTO';
 import { IRenewContractDTO } from '@modules/contracts/dtos/IRenewContractDTO';
 import { Contract } from '@modules/contracts/infra/entities/Contract';
+import { addDays, isAfter } from 'date-fns';
 
 import { IContractsRepository } from '../IContractsRepository';
 
@@ -60,7 +62,15 @@ class ContractsRepositoryInMemory implements IContractsRepository {
     }
   }
 
-  async list(): Promise<Contract[]> {
+  async list({ onlyActive }: IListContractsDTO): Promise<Contract[]> {
+    const yesterday = addDays(new Date(), -1);
+
+    if (onlyActive) {
+      return this.contracts.filter((contract) =>
+        isAfter(contract.end_date, yesterday)
+      );
+    }
+
     return this.contracts;
   }
 }

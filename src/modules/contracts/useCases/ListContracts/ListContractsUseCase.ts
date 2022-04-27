@@ -2,6 +2,10 @@ import { Contract } from '@modules/contracts/infra/entities/Contract';
 import { IContractsRepository } from '@modules/contracts/repositories/IContractsRepository';
 import { inject, injectable } from 'tsyringe';
 
+interface IRequest {
+  onlyActive: boolean;
+}
+
 @injectable()
 export class ListContractsUseCase {
   constructor(
@@ -9,8 +13,8 @@ export class ListContractsUseCase {
     private contractsRepository: IContractsRepository
   ) {}
 
-  async execute(): Promise<Contract[]> {
-    const contracts = await this.contractsRepository.list();
+  async execute({ onlyActive }: IRequest): Promise<Contract[]> {
+    const contracts = await this.contractsRepository.list({ onlyActive });
 
     return contracts;
   }

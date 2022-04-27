@@ -1,7 +1,8 @@
 import { ICreateContractDTO } from '@modules/contracts/dtos/ICreateContractDTO';
+import { IListContractsDTO } from '@modules/contracts/dtos/IListContractsDTO';
 import { IRenewContractDTO } from '@modules/contracts/dtos/IRenewContractDTO';
 import { IContractsRepository } from '@modules/contracts/repositories/IContractsRepository';
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, MoreThanOrEqual } from 'typeorm';
 
 import { Contract } from '../entities/Contract';
 
@@ -63,7 +64,16 @@ class ContractsRepository implements IContractsRepository {
     }
   }
 
-  async list(): Promise<Contract[]> {
+  async list({ onlyActive }: IListContractsDTO): Promise<Contract[]> {
+    if (onlyActive) {
+      return this.repository.find({
+        where: {
+          end_date: MoreThanOrEqual(new Date()),
+        },
+        relations: ['customer', 'contractor'],
+      });
+    }
+
     return this.repository.find({
       relations: ['customer', 'contractor'],
     });

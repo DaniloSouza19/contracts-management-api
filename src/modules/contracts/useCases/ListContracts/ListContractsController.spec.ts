@@ -4,6 +4,7 @@ import { PeopleRepository } from '@modules/people/infra/typeorm/repositories/Peo
 import { PropertiesAddressRepository } from '@modules/properties/infra/typeorm/repositories/PropertiesAddressRepository';
 import { PropertiesRepository } from '@modules/properties/infra/typeorm/repositories/PropertiesRepository';
 import { hash } from 'bcrypt';
+import { addDays } from 'date-fns';
 import request from 'supertest';
 import { Connection } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
@@ -85,7 +86,7 @@ describe('List all Contracts', () => {
 
     const person2 = await peopleRepository.create({
       address_id: address.id,
-      document_id: '000.000.000-00',
+      document_id: '000.000.000-01',
       name: 'John Doe',
       telephone: '(62) 9 9999-9999',
       email: 'johndoe@example.com',
@@ -135,6 +136,110 @@ describe('List all Contracts', () => {
         expect.objectContaining({
           contractor_id: contract.contractor_id,
           property_id: contract.property_id,
+        }),
+      ])
+    );
+  });
+
+  it('Should be able to list all only active Contracts', async () => {
+    // Input values
+    const address = await peopleAddressRepository.create({
+      postal_code: '75000000',
+      city: 'Some City',
+      neighborhood: 'Some neighborhood',
+      state: 'GO',
+      street: 'Some street',
+    });
+
+    const person1 = await peopleRepository.create({
+      address_id: address.id,
+      document_id: '000.000.000-25',
+      name: 'John Doe',
+      telephone: '(62) 9 9999-9999',
+      email: 'johndoe@example.com',
+    });
+
+    await peopleAddressRepository.create({
+      postal_code: '75000000',
+      city: 'Some City',
+      neighborhood: 'Some neighborhood',
+      state: 'GO',
+      street: 'Some street',
+    });
+
+    const person2 = await peopleRepository.create({
+      address_id: address.id,
+      document_id: '000.000.000-26',
+      name: 'John Doe',
+      telephone: '(62) 9 9999-9999',
+      email: 'johndoe@example.com',
+    });
+
+    const { id: property_address_id } =
+      await propertiesAddressRepository.create({
+        postal_code: '75000000',
+        city: 'Some City',
+        neighborhood: 'Some neighborhood',
+        state: 'GO',
+        street: 'Some street',
+      });
+
+    const property = await propertiesRepository.create({
+      address_id: property_address_id,
+      description: 'some property',
+      iptu_id: '123.4555.555.55',
+      owner_id: person1.id,
+      registration_id: '123123123',
+      registry_office: 'Some Office',
+      measure_type: 'm2',
+      measure_amount: 55,
+    });
+
+    const inactiveContract = await contractsRepository.create({
+      contractor_id: person1.id,
+      description: 'Another   Rent contract example',
+      customer_id: person2.id,
+      property_id: property.id,
+      price: 1200,
+      start_date: addDays(new Date(), -2),
+      end_date: addDays(new Date(), -1),
+      registration_id: '123456',
+      registry_office: 'Some office',
+    });
+
+    const activeContract = await contractsRepository.create({
+      contractor_id: person1.id,
+      description: 'Rent contract example',
+      customer_id: person2.id,
+      property_id: property.id,
+      price: 1200,
+      start_date: new Date(),
+      end_date: new Date(),
+      registration_id: '123456',
+      registry_office: 'Some office',
+    });
+
+    const response = await request(app)
+      .get(`${API_PREFIX}/contracts`)
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: activeContract.id,
+          property_id: activeContract.property_id,
+        }),
+      ])
+    );
+
+    expect(response.body).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: inactiveContract.id,
+          property_id: inactiveContract.property_id,
         }),
       ])
     );
