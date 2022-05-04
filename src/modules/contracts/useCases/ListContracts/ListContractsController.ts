@@ -1,3 +1,4 @@
+import { differenceInDays, isAfter, parseISO } from 'date-fns';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -13,6 +14,17 @@ export class ListContractsController {
       onlyActive: Boolean(onlyActive),
     });
 
-    return response.json(contracts);
+    const contractsMapper = contracts.map((contract) => {
+      return {
+        ...contract,
+        expiresInDays: differenceInDays(
+          parseISO(contract.end_date.toISOString()),
+          new Date()
+        ),
+        isActive: isAfter(contract.end_date, new Date()),
+      };
+    });
+
+    return response.json(contractsMapper);
   }
 }
