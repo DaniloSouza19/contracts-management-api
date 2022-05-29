@@ -10,6 +10,7 @@
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "typeorm:prod": "node ./node_modules/typeorm/cli",
+    "prod:script": "yarn typeorm:prod migration:run && yarn seed:admin",
     "commit": "cz",
     "prod:server": "node dist/shared/infra/http/server.js"
   },
