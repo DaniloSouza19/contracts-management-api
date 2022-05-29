@@ -3,8 +3,11 @@ import { v4 as uuidV4 } from 'uuid';
 
 import createConnection from '../index';
 
+const HOST = process.env.NODE_ENV === 'production' ? 'database' : 'localhost';
+const PORT = process.env.NODE_ENV === 'production' ? 5432 : 5433;
+
 async function create(): Promise<void> {
-  const connection = await createConnection('localhost', 5433);
+  const connection = await createConnection(HOST, PORT);
 
   const id = uuidV4();
   const password = await hash('admin', 8);
