@@ -69,7 +69,7 @@ yarn test
     ```
 * create and setup `.env` file like as `.env.example` file
 * change the **target** property to **"production"** on service: "app" in `docker-compose.yml` file
-* On root project, run:
+* On root dir project, run:
   ```sh
   COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
   ```
