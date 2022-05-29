@@ -12,7 +12,9 @@ services:
     volumes:
       - pgdata:/data/postgres
   app:
-    build: .
+    build:
+      context: .
+      target: dev
     container_name: contracts-management
     ports:
       - 3335:3333
