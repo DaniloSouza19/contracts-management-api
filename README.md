@@ -44,6 +44,33 @@ docker-compose up -d
 yarn test
 ```
 
+## Deploy on production
+
+**OBS: using docker compose**
+
+### step by step
+* setup `ormconfig.json` with database credentials and change *"entities"*, *"migration"* and *"cli"* properties to run on **dist** folder
+* create and setup `.env` file like as `.env.example` file
+* change the **target** property to **"production"** on service: "app" in `docker-compose.yml` file
+* On root project, run:
+  ```sh
+  COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build
+  ```
+* after:
+  ```sh
+  docker-compose up -d
+
+  ```
+* after the container is load and running, execute the `bash` into container
+  ```sh
+  docker exec -it contracts-management bash
+  ```
+* execute the prod script (migrations and admin seed)
+  ```sh
+  yarn prod:script
+  ```
+
+
 ## Author
 
 👤 **Danilo Souza**
