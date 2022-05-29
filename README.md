@@ -49,7 +49,24 @@ yarn test
 **OBS: using docker compose**
 
 ### step by step
-* setup `ormconfig.json` with database credentials and change *"entities"*, *"migration"* and *"cli"* properties to run on **dist** folder
+* setup `ormconfig.json` with database credentials and change *"entities"*, *"migration"* and *"cli"* properties to run on **dist** folder, and change ".ts" to ".js" on migrations dir
+  - Example:
+    ```json
+        {
+      "type": "postgres",
+      "host": "database",
+      "port": "5432",
+      "username": "docker",
+      "password": "contracts",
+      "database": "contracts",
+      "entities": ["./dist/modules/**/entities/*.js"],
+      "migrations": ["./dist/shared/infra/typeorm/migrations/*"],
+      "cli": {
+        "migrationsDir": "./dist/shared/infra/typeorm/migrations"
+      }
+    }
+
+    ```
 * create and setup `.env` file like as `.env.example` file
 * change the **target** property to **"production"** on service: "app" in `docker-compose.yml` file
 * On root project, run:
