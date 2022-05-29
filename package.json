@@ -9,7 +9,9 @@
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
-    "commit": "cz"
+    "typeorm:prod": "node ./node_modules/typeorm/cli",
+    "commit": "cz",
+    "prod:server": "node dist/shared/infra/http/server.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
