@@ -15,7 +15,7 @@ services:
     restart: always
     build:
       context: .
-      target: dev
+      target: production
     container_name: contracts-management
     ports:
       - 3335:3333
