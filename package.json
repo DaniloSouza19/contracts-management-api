@@ -8,9 +8,10 @@
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/typeorm/seed/admin.ts",
+    "prod:seed:admin": "node dist/shared/infra/typeorm/seed/admin.js",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "typeorm:prod": "node ./node_modules/typeorm/cli",
-    "prod:script": "yarn typeorm:prod migration:run && yarn seed:admin",
+    "prod:script": "yarn typeorm:prod migration:run && yarn prod:seed:admin",
     "commit": "cz",
     "prod:server": "node dist/shared/infra/http/server.js"
   },
