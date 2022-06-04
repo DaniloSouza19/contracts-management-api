@@ -12,9 +12,10 @@ services:
     volumes:
       - pgdata:/data/postgres
   app:
+    restart: always
     build:
       context: .
-      target: dev
+      target: production
     container_name: contracts-management
     ports:
       - 3335:3333
@@ -24,6 +25,13 @@ services:
       - database
     depends_on:
       - database
+  nginx:
+    container_name: nginx_contracts
+    restart: always
+    build:
+      context: ./ngnix/
+    ports:
+      - "80:80"
 volumes:
   pgdata:
     driver: local
