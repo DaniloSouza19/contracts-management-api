@@ -2,7 +2,8 @@ FROM node:16.13.1 as base
 
 WORKDIR /usr/app
 
-COPY package.json yarn.lock ./
+COPY package.json ./
+COPY yarn.lock ./
 
 RUN yarn install
 
