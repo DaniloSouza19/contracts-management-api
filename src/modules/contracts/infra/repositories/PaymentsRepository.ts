@@ -1,7 +1,8 @@
 import { ICreatePaymentDTO } from '@modules/contracts/dtos/ICreatePaymentDTO';
+import { IListPaymentsDTO } from '@modules/contracts/dtos/IListPaymentsDTO';
 import { IToPayDTO } from '@modules/contracts/dtos/IToPayDTO';
 import { IPaymentsRepository } from '@modules/contracts/repositories/IPaymentsRepository';
-import { getRepository, Repository } from 'typeorm';
+import { FindConditions, getRepository, Repository } from 'typeorm';
 
 import { Payment } from '../entities/Payment';
 
@@ -53,17 +54,19 @@ class PaymentsRepository implements IPaymentsRepository {
     return this.repository.findOne(id);
   }
 
-  async list(contract_id?: string): Promise<Payment[]> {
-    if (!contract_id) {
-      return this.repository.find({
-        relations: ['contract'],
-      });
+  async list({ contract_id, only_pay }: IListPaymentsDTO): Promise<Payment[]> {
+    const where: FindConditions<Payment> = {};
+
+    if (contract_id) {
+      where.contract_id = contract_id;
+    }
+
+    if (only_pay) {
+      where.is_paid = !!only_pay;
     }
 
     return this.repository.find({
-      where: {
-        contract_id,
-      },
+      where,
       relations: ['contract'],
     });
   }

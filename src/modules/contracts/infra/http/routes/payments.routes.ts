@@ -33,6 +33,7 @@ paymentsRouter.get(
   celebrate({
     [Segments.QUERY]: {
       contract_id: Joi.string().uuid(),
+      only_pay: Joi.boolean().default(false),
     },
   }),
   listPaymentsController.handle
