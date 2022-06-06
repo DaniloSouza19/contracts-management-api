@@ -1,4 +1,5 @@
 import { ICreatePaymentDTO } from '@modules/contracts/dtos/ICreatePaymentDTO';
+import { IListPaymentsDTO } from '@modules/contracts/dtos/IListPaymentsDTO';
 import { IToPayDTO } from '@modules/contracts/dtos/IToPayDTO';
 import { Payment } from '@modules/contracts/infra/entities/Payment';
 
@@ -48,10 +49,14 @@ class PaymentsRepositoryInMemory implements IPaymentsRepository {
     return this.payments.find((payment) => payment.id === id);
   }
 
-  async list(contract_id?: string): Promise<Payment[]> {
+  async list({ contract_id, only_pay }: IListPaymentsDTO): Promise<Payment[]> {
     const payments = this.payments.filter((payment) =>
       contract_id ? payment.contract_id === contract_id : payment
     );
+
+    if (only_pay) {
+      return payments.filter((payment) => payment.is_paid);
+    }
 
     return payments;
   }

@@ -5,12 +5,13 @@ import { ListPaymentsUseCase } from './ListPaymentsUseCase';
 
 export class ListPaymentsController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { contract_id } = request.query;
+    const { contract_id, only_pay } = request.query;
     const listPaymentsUseCase = container.resolve(ListPaymentsUseCase);
 
-    const payments = await listPaymentsUseCase.execute(
-      contract_id as string | undefined
-    );
+    const payments = await listPaymentsUseCase.execute({
+      contract_id: contract_id ? String(contract_id) : undefined,
+      only_pay: only_pay ? Boolean(only_pay) : undefined,
+    });
 
     const contractsWithSubtotal = payments.map((payment) => {
       return {
