@@ -92,4 +92,27 @@ describe('List all Payments', () => {
 
     expect(payments).toEqual(expect.not.arrayContaining([payment2]));
   });
+
+  it('Should be able to list all payments filtering by due month', async () => {
+    const paymentActualMonth = await paymentsRepositoryInMemory.create({
+      description: 'First Payment',
+      contract_id: 'some-contract-id',
+      due_date: new Date('2022-01-01T00:00:00'),
+      value: 1200,
+    });
+
+    const paymentNextMonth = await paymentsRepositoryInMemory.create({
+      description: 'Second Payment',
+      contract_id: 'some-contract-id',
+      due_date: new Date('2022-02-01T00:00:00'),
+      value: 1200,
+      payment_date: new Date(),
+    });
+
+    const payments = await listPaymentsUseCase.execute({
+      due_month: 1,
+    });
+
+    expect(payments).toEqual(expect.not.arrayContaining([paymentNextMonth]));
+  });
 });

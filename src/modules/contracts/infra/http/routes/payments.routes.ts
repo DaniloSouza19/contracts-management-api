@@ -34,6 +34,8 @@ paymentsRouter.get(
     [Segments.QUERY]: {
       contract_id: Joi.string().uuid(),
       only_pay: Joi.boolean().default(false),
+      due_month: Joi.number().positive().max(12),
+      due_year: Joi.number().positive(),
     },
   }),
   listPaymentsController.handle

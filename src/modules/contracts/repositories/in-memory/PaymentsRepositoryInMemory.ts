@@ -49,13 +49,24 @@ class PaymentsRepositoryInMemory implements IPaymentsRepository {
     return this.payments.find((payment) => payment.id === id);
   }
 
-  async list({ contract_id, only_pay }: IListPaymentsDTO): Promise<Payment[]> {
+  async list({
+    contract_id,
+    only_pay,
+    due_month,
+    due_year,
+  }: IListPaymentsDTO): Promise<Payment[]> {
     const payments = this.payments.filter((payment) =>
       contract_id ? payment.contract_id === contract_id : payment
     );
 
     if (only_pay) {
       return payments.filter((payment) => payment.is_paid);
+    }
+
+    if (due_month) {
+      return payments.filter(
+        (payment) => payment.due_date.getMonth() === due_month - 1
+      );
     }
 
     return payments;
