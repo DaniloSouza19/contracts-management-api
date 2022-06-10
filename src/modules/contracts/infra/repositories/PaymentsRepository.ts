@@ -2,7 +2,8 @@ import { ICreatePaymentDTO } from '@modules/contracts/dtos/ICreatePaymentDTO';
 import { IListPaymentsDTO } from '@modules/contracts/dtos/IListPaymentsDTO';
 import { IToPayDTO } from '@modules/contracts/dtos/IToPayDTO';
 import { IPaymentsRepository } from '@modules/contracts/repositories/IPaymentsRepository';
-import { FindConditions, getRepository, Repository } from 'typeorm';
+import { lastDayOfMonth, addHours } from 'date-fns';
+import { Between, FindConditions, getRepository, Repository } from 'typeorm';
 
 import { Payment } from '../entities/Payment';
 
@@ -54,7 +55,12 @@ class PaymentsRepository implements IPaymentsRepository {
     return this.repository.findOne(id);
   }
 
-  async list({ contract_id, only_pay }: IListPaymentsDTO): Promise<Payment[]> {
+  async list({
+    contract_id,
+    only_pay,
+    due_month,
+    due_year,
+  }: IListPaymentsDTO): Promise<Payment[]> {
     const where: FindConditions<Payment> = {};
 
     if (contract_id) {
@@ -63,6 +69,14 @@ class PaymentsRepository implements IPaymentsRepository {
 
     if (only_pay) {
       where.is_paid = !!only_pay;
+    }
+
+    if (due_month && due_year) {
+      const startMonth = new Date(due_year, due_month - 1, 1);
+
+      const endMonth = addHours(lastDayOfMonth(startMonth), 3);
+
+      where.due_date = Between(startMonth, endMonth);
     }
 
     return this.repository.find({

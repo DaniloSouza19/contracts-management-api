@@ -69,6 +69,12 @@ class PaymentsRepositoryInMemory implements IPaymentsRepository {
       );
     }
 
+    if (due_year) {
+      return payments.filter(
+        (payment) => payment.due_date.getFullYear() === due_year
+      );
+    }
+
     return payments;
   }
 }
