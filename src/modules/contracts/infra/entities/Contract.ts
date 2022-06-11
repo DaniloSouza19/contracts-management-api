@@ -1,4 +1,5 @@
 import { Person } from '@modules/people/infra/typeorm/entities/Person';
+import { Property } from '@modules/properties/infra/typeorm/entities/Property';
 import {
   Column,
   CreateDateColumn,
@@ -26,6 +27,14 @@ class Contract {
 
   @Column()
   property_id: string;
+
+  @ManyToOne(() => Property, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'property_id',
+  })
+  property: Property;
 
   @Column('numeric')
   price: number;

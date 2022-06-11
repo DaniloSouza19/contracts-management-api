@@ -70,12 +70,12 @@ class ContractsRepository implements IContractsRepository {
         where: {
           end_date: MoreThanOrEqual(new Date()),
         },
-        relations: ['customer', 'contractor'],
+        relations: ['customer', 'contractor', 'property'],
       });
     }
 
     return this.repository.find({
-      relations: ['customer', 'contractor'],
+      relations: ['customer', 'contractor', 'property'],
     });
   }
 }
