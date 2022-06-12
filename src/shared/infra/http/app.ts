@@ -20,7 +20,11 @@ createConnection();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONT_END_URL,
+  })
+);
 
 app.use('/api/v1', routes);
 
